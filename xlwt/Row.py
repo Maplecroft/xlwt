@@ -74,7 +74,7 @@ class Row(object):
     def __adjust_bound_col_idx(self, *args):
         for arg in args:
             iarg = int(arg)
-            if not ((0 <= iarg <= 255) and arg == iarg):
+            if not (arg == iarg):
                 raise ValueError("column index (%r) not an int in range(256)" % arg)
             sheet = self.__parent
             if iarg < self.__min_col_idx:
@@ -191,7 +191,7 @@ class Row(object):
         self.insert_cell(colx, BlankCell(self.__idx, colx, xf_index))
 
     def set_cell_mulblanks(self, first_colx, last_colx, style=Style.default_style):
-        assert 0 <= first_colx <= last_colx <= 255
+        #assert 0 <= first_colx <= last_colx <= 255
         self.__adjust_height(style)
         self.__adjust_bound_col_idx(first_colx, last_colx)
         xf_index = self.__parent_wb.add_style(style)
